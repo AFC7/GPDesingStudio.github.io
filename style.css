@@ -879,3 +879,62 @@ footer {
 .developer-credit a:hover {
     color: white;
 }
+/* AJUSTES FINALES DE RESPONSIVIDAD */
+@media (max-width: 768px) {
+    /* Forzar que el menú inicie oculto en móvil */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Mostrar menú cuando se activa */
+    .nav-menu.abierto {
+        display: flex !important;
+    }
+
+    .nav-menu li {
+        margin: 15px 0 !important;
+        text-align: center;
+    }
+
+    /* Ajuste de Hero para que no se vea cortado */
+    .hero {
+        height: auto;
+        padding: 120px 20px 60px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem !important;
+    }
+
+    /* Grillas a una sola columna */
+    .projects-grid, 
+    .services-grid, 
+    .contact-container {
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+    }
+
+    /* Footer: Centrar textos en móvil */
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
