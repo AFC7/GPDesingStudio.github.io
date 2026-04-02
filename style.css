@@ -119,40 +119,160 @@ nav ul li a:hover, nav ul li a.active { color: var(--terracota); }
     text-align: center;
 }
 
+/* ============================================
+   EFECTOS EN PROYECTOS (Hover & Touch)
+   ============================================ */
+
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    padding: 20px 0;
 }
 
 .project-card {
     background: var(--blanco);
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimiento suave */
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.03);
 }
 
-.project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-
+/* Imagen del proyecto */
 .project-img {
     height: 300px;
     width: 100%;
-    transition: transform 0.5s ease;
+    overflow: hidden; /* Corta lo que sobresalga del zoom */
+    position: relative;
+    background-color: var(--beige); /* Color de carga mientras baja la imagen */
 }
 
-.project-card:hover .project-img { transform: scale(1.05); }
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin estirarla */
+    display: block;
+    transition: transform 0.5s ease; /* Suaviza el zoom del hover */
+}
 
-.project-info { padding: 25px; }
+/* El efecto hover ahora se aplica directamente a la etiqueta img */
+.project-card:hover .project-img img {
+    transform: scale(1.1);
+}
+
+/* Efecto de brillo/superposición al tocar o pasar el mouse */
+.project-img::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+/* Contenedor de la imagen */
+.project-img {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--beige-muy-claro); /* Color de respaldo mientras carga */
+}
+
+/* Ajuste de la imagen real */
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Evita que la foto se estire o se vea desproporcionada */
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Efecto Zoom al pasar el mouse en PC */
+@media (hover: hover) {
+    .project-card:hover .project-img img {
+        transform: scale(1.1);
+    }
+}
+
+/* Info del proyecto - Ajuste de espaciado */
+.project-info h3 {
+    margin: 8px 0;
+    font-size: 1.3rem;
+    color: var(--marron-oscuro);
+}
+
+.project-info p {
+    font-size: 0.9rem;
+    color: var(--marron-medio);
+    line-height: 1.4;
+}
+/* --- EFECTO HOVER (PC) Y ACTIVE (MÓVIL) --- */
+
+@media (hover: hover) {
+    /* Solo se aplica en dispositivos con mouse (PC) */
+    .project-card:hover {
+        transform: translateY(-10px); /* La tarjeta sube */
+        box-shadow: 0 12px 30px rgba(122, 74, 47, 0.15); /* Sombra con tu color marrón */
+        border-color: var(--arena);
+    }
+
+    .project-card:hover .project-img {
+        transform: scale(1.05); /* La imagen se acerca un poco */
+    }
+
+    .project-card:hover .project-img::after {
+        opacity: 1;
+    }
+
+    .project-card:hover h3 {
+        color: var(--terracota); /* El título cambia a tu color de acento */
+    }
+}
+
+/* --- OPTIMIZACIÓN PARA TELÉFONOS (Touch) --- */
+@media (hover: none) {
+    /* Se aplica en pantallas táctiles */
+    .project-card:active {
+        transform: scale(0.98); /* Efecto de "presionado" al tocar */
+        background-color: #fcfcfc;
+    }
+    
+    .project-card:active .project-img {
+        filter: brightness(0.9);
+    }
+}
+
+/* Info del proyecto */
+.project-info {
+    padding: 25px;
+}
 
 .project-info span {
-    font-size: 0.7rem;
-    text-transform: uppercase;
     color: var(--terracota);
-    letter-spacing: 2px;
-    font-weight: bold;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.project-info h3 { margin: 10px 0; font-weight: 500; font-size: 1.4rem; }
+.project-info h3 {
+    margin: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    color: #666;
+}
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Una sola columna en teléfonos pequeños */
+        gap: 20px;
+    }
+}
 
 /* --- FILTROS PORTAFOLIO --- */
 .filter-container { text-align: center; margin-bottom: 50px; margin-top: 100px; }
@@ -1076,5 +1196,126 @@ footer {
     .contact-container {
         grid-template-columns: 1fr !important;
         padding: 0 20px;
+    }
+}
+/* --- ESTILOS PÁGINA DE DETALLE --- */
+.detalle-container {
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.detalle-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.detalle-header span {
+    color: var(--terracota);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* --- LÓGICA DEL CARRETE (SLIDER EN MÓVIL / GRID EN PC) --- */
+.proyecto-carrete {
+    margin: 40px 0;
+}
+
+.slider-wrapper {
+    display: grid; /* Por defecto en PC usamos cuadrícula */
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.slider-wrapper img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+    background-color: var(--beige);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.slider-wrapper img:hover {
+    transform: scale(1.02); /* Efecto sutil al pasar el mouse en PC */
+}
+
+/* Ocultamos la instrucción de deslizar en PC */
+.slider-instruccion {
+    display: none;
+}
+
+/* --- CAMBIO EXCLUSIVO PARA MÓVIL (Mantenemos el movimiento) --- */
+@media (max-width: 768px) {
+  .slider-wrapper {
+    display: flex;
+    overflow-x: auto;
+    /* Esto habilita la barra de scroll en PC para que puedan moverla con el mouse */
+    scrollbar-width: thin; 
+    scrollbar-color: var(--arena) transparent;
+}
+
+/* Estilo de la barra para que no se vea fea en Chrome/PC */
+.slider-wrapper::-webkit-scrollbar {
+    height: 6px;
+    display: block; 
+}
+.slider-wrapper::-webkit-scrollbar-thumb {
+    background: var(--arena);
+    border-radius: 10px;
+}
+
+    .slider-instruccion {
+        display: block; /* Mostramos el texto de "Desliza" solo en móvil */
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--marron-claro);
+        margin-top: 15px;
+    }
+}
+
+/* --- INFO DEL PROYECTO --- */
+.detalle-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+    margin-top: 60px;
+}
+
+.info-stats {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    height: fit-content;
+}
+
+.stat-item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--beige-muy-claro);
+    padding-bottom: 10px;
+}
+
+/* --- RESPONSIVIDAD DEL DETALLE --- */
+@media (max-width: 768px) {
+    .slider-wrapper img {
+        flex: 0 0 90%; /* En móvil más pequeño, la foto es más ancha */
+        height: 300px;
+    }
+
+    .detalle-info {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+    }
+
+    .detalle-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slider-wrapper img {
+        flex: 0 0 45%; /* En PC se ven casi 2 fotos y media al tiempo */
     }
 }
