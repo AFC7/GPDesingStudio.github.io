@@ -879,62 +879,205 @@ footer {
 .developer-credit a:hover {
     color: white;
 }
-/* AJUSTES FINALES DE RESPONSIVIDAD */
+/* ======== PIE DE PÁGINA PROFESIONAL ======== */
+footer {
+    background-color: var(--marron-oscuro); /* Fondo oscuro de la paleta */
+    color: var(--beige-muy-claro); /* Texto claro para legibilidad */
+    padding: 80px 0 30px 0;
+    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); /* Manteniendo el estilo dinámico */
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-col h4 {
+    color: var(--arena); /* Color dorado/arena para títulos */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--terracota); /* Detalle en terracota */
+}
+
+.footer-col p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-col ul li i {
+    margin-right: 12px;
+    color: var(--terracota); /* Iconos resaltados */
+}
+
+.footer-col ul li a {
+    color: var(--beige-muy-claro);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--blanco);
+    opacity: 1;
+    padding-left: 8px;
+}
+
+.footer-social {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: var(--beige-muy-claro);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.footer-social a:hover {
+    color: var(--blanco);
+    background-color: var(--terracota);
+    border-color: var(--terracota);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+    font-size: 0.85rem;
+}
+
+.developer-credit {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.developer-credit a {
+    color: var(--arena);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.developer-credit a:hover {
+    text-decoration: underline;
+}
+
+/* ======== MENÚ MÓVIL Y RESPONSIVE AJUSTADO ======== */
+.menu-hamburguesa {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100;
+}
+
+.menu-hamburguesa .barra {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--marron-oscuro); /* Barras en color oscuro para contraste */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Animación de hamburguesa a X */
+.menu-hamburguesa.abierto .barra:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-hamburguesa.abierto .barra:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguesa.abierto .barra:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
 @media (max-width: 768px) {
-    /* Forzar que el menú inicie oculto en móvil */
     .nav-menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: white;
-        position: absolute;
-        top: 100%;
+        display: none; /* Se controla vía JS con la clase .abierto */
+        position: fixed;
+        top: 0;
         left: 0;
-        padding: 20px 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 35px;
+        z-index: 1000;
     }
 
-    /* Mostrar menú cuando se activa */
     .nav-menu.abierto {
-        display: flex !important;
+        display: flex;
     }
 
-    .nav-menu li {
-        margin: 15px 0 !important;
-        text-align: center;
+    .nav-menu li a {
+        font-size: 1.4rem;
+        color: var(--marron-oscuro);
+        font-weight: 500;
     }
 
-    /* Ajuste de Hero para que no se vea cortado */
-    .hero {
-        height: auto;
-        padding: 120px 20px 60px;
+    .nav-menu li a.active {
+        color: var(--terracota);
     }
 
-    .hero h1 {
+    /* Ajustes de títulos en móvil */
+    .hero h1, .section-title {
         font-size: 2.2rem !important;
     }
 
-    /* Grillas a una sola columna */
+    /* Grillas a 1 columna */
     .projects-grid, 
     .services-grid, 
     .contact-container {
         grid-template-columns: 1fr !important;
-        gap: 25px;
-    }
-
-    /* Footer: Centrar textos en móvil */
-    .footer-content {
-        grid-template-columns: 1fr !important;
-        text-align: center;
-    }
-
-    .footer-social {
-        justify-content: center;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+        padding: 0 20px;
     }
 }
