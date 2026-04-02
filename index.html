@@ -10,26 +10,23 @@
 </head>
 <body>
 
- <header class="main-header">
-     <div class="logo">
-        <a href="index.html" class="nav__logo">
-            <img src="assets/images/logo-page.webp" alt="Logo GP Desing STUDIO" class="nav__logo-img">
-        </a>
-        </div>
-        <button class="menu-toggle" aria-label="Abrir Menú">
-            ☰
-        </button>
-    <nav class="contenedor-nav">
-        <a href="index.html" class="logo">GP Design<span> STUDIO</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Inicio</a></li>
+    <header>
+        <nav class="contenedor">
+            <a href="#inicio"><img src="images/logo.webp"
+                    alt="Logo GP Desing STUDIO"
+                    class="logo"></a>
+            <button class="menu-hamburguesa" id="menu-toggle" aria-label="Abrir menú de navegación">
+                <span class="barra"></span><span class="barra"></span><span class="barra"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="active">Inicio</a></li>
             <li><a href="portafolio.html">Portafolio</a></li>
             <li><a href="servicios.html">Servicios</a></li>
             <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-</header>
-
+            </ul>
+        </nav>
+    </header>
+ 
     <main>
         <section class="hero">
             <div class="hero-content">
@@ -76,6 +73,7 @@
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="portafolio.html">Portafolio</a></li>
                 <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -92,7 +90,8 @@
     </div>
     <div class="footer-bottom">
         <p>&copy; 2026 GP Design STUDIO. Todos los derechos reservados.</p>
-        <p>Diseño Industrial & Comunicaciones</p>
+        <p class="developer-credit">Diseño web por <a href="https://afc7.github.io/afcaro7.github.io/" target="_blank">Andres Felipe Ingeniero Electrónico</a></p>
+    </div>
     </div>
 </footer>
 
